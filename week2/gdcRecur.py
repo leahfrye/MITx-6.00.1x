@@ -9,4 +9,4 @@ def gdcRecur(a, b):
     else:
         return gdcRecur(b, a % b);
 
-print(gdcRecur(55, 90));
+print(gdcRecur(242, 275));
