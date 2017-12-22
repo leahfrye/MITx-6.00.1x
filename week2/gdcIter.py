@@ -1,4 +1,4 @@
-# Finds the lowest common denominator between 2 numbers, iteratively
+# Finds the greatest common denominator between 2 numbers, iteratively
 
 def gdcIter(a, b):
     smallest = min([a, b]);
