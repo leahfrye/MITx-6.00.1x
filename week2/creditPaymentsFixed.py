@@ -1,4 +1,4 @@
-# Returns the remaining balance at the end of each month, if the minimum amount is payed.
+# Returns the minimum monthly payment required to pay off the balance in a year, using increments of 10
 
 
 def findMinPayment(balance, annualInterestRate, minPayment):
