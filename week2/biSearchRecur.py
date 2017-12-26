@@ -1,4 +1,4 @@
-# Finds the greatest common denominator between 2 numbers, recursively
+# Recursively finds if a character is in a string (in alphabetical order), using bisection search
 
 def isIn(char, aStr):
     
