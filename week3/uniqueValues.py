@@ -5,14 +5,20 @@ def uniqueValues(aDict):
     newDict = {}
     keys = []
 
-    for key,value in aDict:
-        if value not in newDict.values() and type(value) == int:
+    for key in aDict:
+        value = aDict[key]
+        newDict = aDict.copy()
+        del newDict[key]
+        hasDuplicate = False
+
+        for key2 in newDict:
+            if newDict[key2] == aDict[key]:
+                hasDuplicate = True
+        
+        if hasDuplicate == False:
             keys.append(key)
-        else:
-            keys.remove(key)
-    print(newDict)
-    
+
     keys.sort()
     return keys
 
-print(uniqueValues({1: 1, 2: 2, 3: 2, 4: "cat"}));
+print(uniqueValues({8: 1, 0: 4, 1: 1, 5: 2, 9: 4}))
