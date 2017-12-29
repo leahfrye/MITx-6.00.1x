@@ -124,8 +124,50 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
+    prevHand = ""
+    choice = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+
+    while True:
+
+        if choice == "e":
+            return
+        
+        elif choice == "r" or choice == "n":    
+
+            if choice == "r" and prevHand == "":
+                print("You have not played a hand yet. Please play a new hand first!")
+                print()
+                choice = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")   
+        
+            else:
+                choice2 = input("Enter u to have yourself play, c to have the computer play: ")
+
+                if choice2 == "u":
+                    if choice == "r":
+                        playHand(prevHand, wordList, HAND_SIZE)
+                    elif choice == "n":
+                        prevHand = dealHand(HAND_SIZE)
+                        playHand(prevHand, wordList, HAND_SIZE)
+                    choice = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+                    
+                elif choice2 == "c":
+                    if choice == "r":
+                        compPlayHand(prevHand, wordList, HAND_SIZE)
+                    elif choice == "n":
+                        prevHand = dealHand(HAND_SIZE)
+                        compPlayHand(prevHand, wordList, HAND_SIZE)
+                    choice = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+                    
+                    
+                elif choice2 != "u" or choice2 != "c":
+                    print("Invalid command.")
+
+                
+            
+        elif choice != "n" or choice != "r" or choice != "e":
+            print("Invalid command.")
+            choice = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        
 
         
 #
