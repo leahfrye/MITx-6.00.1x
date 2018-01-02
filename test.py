@@ -1,23 +1,40 @@
-class Weird(object):
-    def __init__(self, x, y): 
-        self.y = y
-        self.x = x
-    def getX(self):
-        return x 
-    def getY(self):
-        return y
+class A(object):
+    def __init__(self):
+        self.a = 1
+    def x(self):
+        print("A.x")
+    def y(self):
+        print("A.y")
+    def z(self):
+        print("A.z")
 
-class Wild(object):
-    def __init__(self, x, y): 
-        self.y = y
-        self.x = x
-    def getX(self):
-        return self.x 
-    def getY(self):
-        return self.y
+class B(A):
+    def __init__(self):
+        A.__init__(self)
+        self.a = 2
+        self.b = 3
+    def y(self):
+        print("B.y")
+    def z(self):
+        print("B.z")
 
-X = 7
-Y = 8
+class C(object):
+    def __init__(self):
+        self.a = 4
+        self.c = 5
+    def y(self):
+        print("C.y")
+    def z(self):
+        print("C.z")
 
-w2 = Wild(17, 18)
-print(w2.getX())
+class D(C, B):
+    def __init__(self):
+        C.__init__(self)
+        B.__init__(self)
+        self.d = 6
+    def z(self):
+        print("D.z")
+
+obj = D()
+
+obj.z()

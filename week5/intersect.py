@@ -30,14 +30,19 @@ class intSet(object):
         self.vals.sort()
         return '{' + ','.join([str(e) for e in self.vals]) + '}'
 
+    # Returns a new list of values in common between 2 lists
     def intersect(self, other):
         commonVals = []
-        print(other.vals)
-        # for num in self.vals:
-        #     if num not in other.vals:
-        #         commonVals.append(c)
+        for num in self.vals:
+            if num in other.vals:
+                commonVals.append(str(num))
         
-        return commonVals
+        return "{" + ",".join(commonVals) + "}"
+
+    def __len__(self):
+        return len(self.vals)
+        
+        
 
 values = intSet()
 values.insert([-20,-17,-15,-12,-8,-3,3,12,13,16])
@@ -45,4 +50,4 @@ values.insert([-20,-17,-15,-12,-8,-3,3,12,13,16])
 values2 = intSet()
 values2.insert([-18,-9,-6,-4,-3,-2,0,5,8,18])
 
-print(values.intersect(values2))        
+print(values.__len__())        
