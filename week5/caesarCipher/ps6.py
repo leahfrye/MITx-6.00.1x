@@ -48,7 +48,7 @@ def get_story_string():
     """
     Returns: a joke in encrypted text.
     """
-    f = open("story.txt", "r")
+    f = open("C:\projects\mitCourse6.00.1x\week5\caesarCipher\story.txt", "r")
     story = str(f.read())
     f.close()
     return story
@@ -243,12 +243,31 @@ class CiphertextMessage(Message):
         and the decrypted message text using that shift value
         '''
 
-        for i in range(27):
-            message = super(CiphertextMessage, self).apply_shift(i)
-            numRealWords = 0
-            messageSplitIntoWords = message.split(" ")
-            print(messageSplitIntoWords)
+        shift = 0
+        prevNumRealWords = 0
+        numRealWords = 0
 
+        for i in range(26):
+            message = super(CiphertextMessage, self).apply_shift(i)
+            messageSplitIntoWords = message.split(" ")
+            for word in messageSplitIntoWords:
+                if is_word(self.valid_words, word):
+                    numRealWords += 1
+                
+                if numRealWords == len(messageSplitIntoWords):
+                    return (shift, message)
+
+                if numRealWords > prevNumRealWords:
+                    prevNumRealWords = numRealWords
+                    shift = i
+                    
+        return (shift, super(CiphertextMessage, self).apply_shift(shift))
+            
+            
+
+def decrypt_story():
+    story = CiphertextMessage(get_story_string())
+    return story.decrypt_message()
 
 
 
@@ -262,5 +281,4 @@ ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
-testMessage = CiphertextMessage("TESTING.... so many words we are testing out your code: last one")
-print(testMessage.decrypt_message())
+print(decrypt_story())
